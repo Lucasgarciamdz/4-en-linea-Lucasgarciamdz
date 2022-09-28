@@ -7,9 +7,14 @@ def main():
     while True:
         print_board(game.board)
 
-        column = int(input("Player {}, choose a column: ".format(game.player)))
         try:
+            kkk = input("Player {}, choose a column: ".format(game.player))
+            if kkk == 'q':
+                break
+            column = int(kkk)
             game.insert_chip(column)
+        except ValueError:
+            print("You must enter a number")
         except Overflow:
             print("Overflow")
         except FullColumn:
@@ -24,7 +29,7 @@ def main():
             break
         if column == "q":
             break
-
+        
 
 def print_board(board):
     # prepare the empty content

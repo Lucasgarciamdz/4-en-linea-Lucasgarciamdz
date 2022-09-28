@@ -70,9 +70,13 @@ class FourInLine2D:
                     if self.game.board[row][col] == PLAYER_ONE:
                         pygame.draw.circle(self.DISPLAY, RED,
                                            (75 + 50 * col, 75 + 50 * row), 20)
+                        pygame.draw.circle(self.DISPLAY, BLACK,
+                                            (75 + 50 * col, 75 + 50 * row), 21,width=1)
                     elif self.game.board[row][col] == PLAYER_TWO:
                         pygame.draw.circle(self.DISPLAY, GREEN,
                                            (75 + 50 * col, 75 + 50 * row), 20)
+                        pygame.draw.circle(self.DISPLAY, BLACK,
+                                            (75 + 50 * col, 75 + 50 * row), 21,width=1)
 
         if self.game.winner == PLAYER_ONE:
             winner_color = "Red"
