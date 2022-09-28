@@ -32,6 +32,7 @@ class TestFourInLine2D(unittest.TestCase):
         game2d.run()
         quit_patched.assert_called_once()
 
+    @patch('pygame.init')
     @patch('pygame.quit')
     @patch('pygame.mouse.get_pos', return_value=(100, 100))
     @patch('pygame.event.get',
@@ -43,9 +44,11 @@ class TestFourInLine2D(unittest.TestCase):
         event_get_patched.assert_called_once()
         self.game2d.game.board[7][2] = 1
 
+    @patch('pygame.init')
     @patch('pygame.draw.line')
     def test_draw_board(self, draw_line_patched, *args):
-        pass
+        self.game2d.draw_board()
+        self.assertEqual(draw_line_patched.call_count, 18)
 
 
 if __name__ == "__main__":
