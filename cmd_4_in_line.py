@@ -4,31 +4,34 @@ from exceptions_4_in_line import *
 
 def main():
     game = FourInLine()
-    while True:
+    playing = True
+    while playing:
         print_board(game.board)
+        playing = play(game)
 
-        try:
-            kkk = input("Player {}, choose a column: ".format(game.player))
-            if kkk == 'q':
-                break
-            column = int(kkk)
-            game.insert_chip(column)
-        except ValueError:
-            print("You must enter a number")
-        except Overflow:
-            print("Overflow")
-        except FullColumn:
-            print("FullColumn")
-        if game.winner:
-            print_board(game.board)
-            print(f"Player {game.winner} wins!")
-            break
-        if game.is_full():
-            print_board(game.board)
-            print("Draw!")
-            break
-        if column == "q":
-            break
+def play(game):
+
+    try:
+        column_input = input("Player {}, choose a column: ".format(game.player))
+        if column_input == 'q':
+            return False
+        column = int(column_input)
+        game.insert_chip(column)
+    except ValueError:
+        print("You must enter a number")
+    except Overflow:
+        print("Overflow")
+    except FullColumn:
+        print("Full Column")
+    if game.winner:
+        print_board(game.board)
+        print(f"Player {game.winner} wins!")
+        return False
+    if game.is_full():
+        print_board(game.board)
+        print("Draw!")
+        return False
+    return True
         
 
 def print_board(board):
