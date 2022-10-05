@@ -56,31 +56,6 @@ class Test4InLine(unittest.TestCase):
         self.assertEqual(patched_print.call_args_list[last_called - 1][0][0],
                          "Player 1 wins!")
 
-    def test_diagonal_winner(self, patched_input, patched_print, *args):
-        patched_input.side_effect = [
-            "1", "2", "2", "3", "3", "3", "4", "4", "4", "4", "q"
-        ]
-        main()
-        last_called = patched_print.call_count
-        self.assertEqual(patched_print.call_args_list[last_called - 1][0][0],
-                         "Player 1 wins!")
-
-    def test_draw(self, patched_input, patched_print, *args):
-        patched_input.side_effect = [
-            "1", "2", "3", "4", "5", "6", "7", "1", "2", "3", "4", "5", "6",
-            "7", "1", "2", "3", "4", "5", "6", "7", "1", "2", "3", "4", "5",
-            "6", "7", "q"
-        ]
-        main()
-        last_called = patched_print.call_count
-        self.assertEqual(patched_print.call_args_list[last_called - 1][0][0],
-                         "Draw!")
-
-    def test_print_board(self, patched_input, patched_print, *args):
-        game = FourInLine()
-        print_board(game)
-        self.assertEqual(patched_print.call_count, 11)
-
 
 if __name__ == '__main__':
     unittest.main()
