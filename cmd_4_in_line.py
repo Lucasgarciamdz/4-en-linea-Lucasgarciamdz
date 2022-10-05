@@ -9,10 +9,12 @@ def main():
         print_board(game.board)
         playing = play(game)
 
+
 def play(game):
 
     try:
-        column_input = input("Player {}, choose a column: ".format(game.player))
+        column_input = input("Player {}, choose a column: ".format(
+            game.player))
         if column_input == 'q':
             return False
         column = int(column_input)
@@ -32,10 +34,9 @@ def play(game):
         print("Draw!")
         return False
     return True
-        
+
 
 def print_board(board):
-    # prepare the empty content
     rows = 8
     cols = 8
     content = [["."] * cols for _ in range(rows)]

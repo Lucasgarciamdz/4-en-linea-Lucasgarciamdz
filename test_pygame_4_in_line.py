@@ -6,7 +6,7 @@ from pygame.event import Event
 import unittest
 
 
-
+@patch('random.choice', return_value=1)
 @patch('pygame.display.set_caption')
 @patch('pygame.display.set_mode')
 @patch('pygame.draw.line')
@@ -19,15 +19,7 @@ import unittest
 @patch('pygame.time.Clock')
 @patch('pygame.init')
 class TestFourInLine2D(unittest.TestCase):
-
-    def setUp(self):
-        self.game = FourInLine2D()
-    
-    #test pygame init once
-    def test_pygame_init_once(self, patched_init,*args):
-        self.game.run()
-        patched_init.assert_called_once()
-
+    pass
 
 if __name__ == "__main__":
     unittest.main()

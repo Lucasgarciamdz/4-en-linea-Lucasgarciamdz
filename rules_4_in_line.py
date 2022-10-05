@@ -9,15 +9,8 @@ class FourInLine:
 
     def __init__(self):
         self.board = [[0 for column in range(8)] for row in range(8)]
-        self.select_first_player()
         self.winner = ""
-
-    def select_first_player(self):
-        number = random.randint(1, 2)
-        if number == 1:
-            self.player = PLAYER_ONE
-        elif number == 2:
-            self.player = PLAYER_TWO
+        self.player = random.choice([PLAYER_ONE, PLAYER_TWO])
 
     def insert_chip(self, column):
         self.check_overflow(column)
@@ -27,13 +20,10 @@ class FourInLine:
         self.change_player()
 
     def free_row(self, column):
-        x = 0
-        while x == 0:
-            for row in range(7, -1, -1):
-                if self.board[row][column] == (0):
-                    x = 1
-                    return row
-            raise FullColumn
+        for row in range(7, -1, -1):
+            if self.board[row][column] == (0):
+                return row
+        raise FullColumn
 
     def change_player(self):
         if self.player == PLAYER_ONE:
@@ -98,3 +88,12 @@ class FourInLine:
             if count == 4:
                 self.winner = self.player
         return False
+
+
+if __name__ == "__main__":
+    game = FourInLine()
+    game.insert_chip(1)
+    game.insert_chip(1)
+    game.insert_chip(1)
+    game.insert_chip(1)
+    print(game.winner)
