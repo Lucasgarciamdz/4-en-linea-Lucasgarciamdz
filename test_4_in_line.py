@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 from exceptions_4_in_line import *
 from rules_4_in_line import FourInLine
+from parameterized import parameterized
 
 
 class Test4InLine(unittest.TestCase):
@@ -100,6 +101,13 @@ class Test4InLine(unittest.TestCase):
                            [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
                            [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1]]
         self.assertTrue(self.game.is_full())
+
+    def test_is_not_full(self):
+        self.game.board = [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
+                           [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
+                           [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
+                           [1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0]]
+        self.assertFalse(self.game.is_full())
 
 
 if __name__ == "__main__":
