@@ -1,8 +1,6 @@
 import unittest
 from unittest.mock import patch
-from exceptions_4_in_line import *
-from rules_4_in_line import FourInLine
-from cmd_4_in_line import main, print_board
+from cmd_4_in_line import main
 
 
 @patch('random.choice', return_value=1)

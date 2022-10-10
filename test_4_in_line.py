@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import patch
-from exceptions_4_in_line import *
+from exceptions_4_in_line import Overflow
+from exceptions_4_in_line import FullColumn
 from rules_4_in_line import FourInLine
-from parameterized import parameterized
 
 
 class Test4InLine(unittest.TestCase):

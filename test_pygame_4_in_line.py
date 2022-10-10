@@ -1,8 +1,4 @@
 from unittest.mock import patch
-from pygame_4_in_line import FourInLine2D
-from pygame.locals import *
-from pygame.event import Event
-
 import unittest
 
 
@@ -20,6 +16,7 @@ import unittest
 @patch('pygame.init')
 class TestFourInLine2D(unittest.TestCase):
     pass
+
 
 if __name__ == "__main__":
     unittest.main()

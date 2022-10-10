@@ -5,5 +5,6 @@ class FullColumn(Exception):
 class Overflow(Exception):
     pass
 
+
 class Wrong_input(Exception):
     pass

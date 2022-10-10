@@ -1,5 +1,6 @@
 from rules_4_in_line import FourInLine
-from exceptions_4_in_line import *
+from exceptions_4_in_line import Overflow
+from exceptions_4_in_line import FullColumn
 
 
 def main():

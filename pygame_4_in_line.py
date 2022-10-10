@@ -1,8 +1,8 @@
-from sre_parse import WHITESPACE
 import pygame
 from pygame.locals import *
 from rules_4_in_line import FourInLine, PLAYER_ONE, PLAYER_TWO
-from exceptions_4_in_line import *
+from exceptions_4_in_line import Overflow
+from exceptions_4_in_line import FullColumn
 
 RED = (238, 96, 85)
 WHITE = (255, 255, 255)
