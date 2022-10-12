@@ -42,13 +42,6 @@ def print_board(board):
     cols = 8
     content = [["."] * cols for _ in range(rows)]
 
-    for i in range(rows):
-        for j in range(cols):
-            if board[i][j] == 1:
-                content[i][j] = "X"
-            elif board[i][j] == 2:
-                content[i][j] = "O"
-
     # build frame
     width = len(str(max(rows, cols) - 1))
     contentLine = "# | values |"
@@ -73,7 +66,3 @@ def print_board(board):
     colNums = " ".join(f"{i:<{width}d}" for i in range(1, cols + 1))
     numLine = numLine.replace("values", colNums)
     print(numLine)
-
-
-if __name__ == "__main__":
-    main()

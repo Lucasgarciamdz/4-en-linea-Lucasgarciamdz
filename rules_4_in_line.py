@@ -88,12 +88,3 @@ class FourInLine:
             if count == 4:
                 self.winner = self.player
         return False
-
-
-if __name__ == "__main__":
-    game = FourInLine()
-    game.insert_chip(1)
-    game.insert_chip(1)
-    game.insert_chip(1)
-    game.insert_chip(1)
-    print(game.winner)

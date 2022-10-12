@@ -54,6 +54,20 @@ class Test4InLine(unittest.TestCase):
         self.assertEqual(patched_print.call_args_list[last_called - 1][0][0],
                          "Player 1 wins!")
 
+    def test_draw(self, patched_input, patched_print, *args):
+        patched_input.side_effect = [
+            "1", "1", "1", "1", "1", "1", "1", "1", "1", "2", "2", "2", "2",
+            "2", "2", "2", "2", "4", "4", "4", "4", "4", "4", "4", "4", "6",
+            "3", "3", "3", "3", "3", "3", "3", "3", "8", "8", "8", "8", "8",
+            "8", "8", "8", "7", "7", "7", "7", "7", "7", "7", "7", "6", "6",
+            "6", "6", "6", "6", "6", "6", "5", "5", "5", "5", "5", "5", "5",
+            "5"
+        ]
+        main()
+        last_called = patched_print.call_count
+        self.assertEqual(patched_print.call_args_list[last_called - 1][0][0],
+                         "Draw!")
+
 
 if __name__ == '__main__':
     unittest.main()
