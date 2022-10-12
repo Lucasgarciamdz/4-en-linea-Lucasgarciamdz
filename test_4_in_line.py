@@ -3,6 +3,7 @@ from unittest.mock import patch
 from exceptions_4_in_line import Overflow
 from exceptions_4_in_line import FullColumn
 from rules_4_in_line import FourInLine
+from parameterized import parameterized
 
 
 class Test4InLine(unittest.TestCase):
@@ -11,20 +12,71 @@ class Test4InLine(unittest.TestCase):
         with patch('random.choice', return_value=1):
             self.game = FourInLine()
 
+    @parameterized.expand([
+        (1, 1),
+        (2, 1),
+        (3, 1),
+        (4, 1),
+        (5, 1),
+        (6, 1),
+        (7, 1),
+        (8, 1),
+    ])
+    def test_insert_chip(self, column, expected):
+        self.game.insert_chip(column)
+        self.assertEqual(self.game.board[7][column - 1], expected)
+
+    @parameterized.expand([
+        (9, Overflow),
+        (0, Overflow),
+        (-1, Overflow),
+    ])
+    def test_insert_chip_overflow(self, column, expected):
+        with self.assertRaises(expected):
+            self.game.insert_chip(column)
+
+    @parameterized.expand([
+        (1, FullColumn),
+        (2, FullColumn),
+        (3, FullColumn),
+        (4, FullColumn),
+        (5, FullColumn),
+        (6, FullColumn),
+        (7, FullColumn),
+        (8, FullColumn),
+    ])
+    def test_insert_chip_full_column(self, column, expected):
+        for i in range(8):
+            self.game.insert_chip(column)
+        with self.assertRaises(expected):
+            self.game.insert_chip(column)
+
+    def test_change_player(self):
+        game = FourInLine()
+        game.change_player()
+        self.assertEqual(game.player, 2)
+
+    def test_is_full(self):
+        game = FourInLine()
+        for i in range(8):
+            for j in range(8):
+                game.board[i][j] = 1
+        self.assertTrue(game.is_full())
+
+    def test_is_full2(self):
+        game = FourInLine()
+        for i in range(8):
+            for j in range(8):
+                game.board[i][j] = 1
+        game.board[0][0] = 0
+        self.assertFalse(game.is_full())
+
     def test_initial_blank_board(self):
         self.assertEqual(self.game.board,
                          [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]])
-
-    def test_insert_chip(self):
-        self.game.insert_chip(1)
-        self.assertEqual(self.game.board,
-                         [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0]])
 
     def test_change_turns(self):
         first = self.game.player
@@ -94,13 +146,6 @@ class Test4InLine(unittest.TestCase):
                           [1, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0],
                           [1, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0],
                           [1, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0]])
-
-    def test_is_full(self):
-        self.game.board = [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
-                           [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
-                           [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
-                           [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1]]
-        self.assertTrue(self.game.is_full())
 
     def test_is_not_full(self):
         self.game.board = [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1],
