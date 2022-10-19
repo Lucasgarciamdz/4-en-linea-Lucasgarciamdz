@@ -66,7 +66,3 @@ def print_board(board):
     colNums = " ".join(f"{i:<{width}d}" for i in range(1, cols + 1))
     numLine = numLine.replace("values", colNums)
     print(numLine)
-
-
-if __name__ == "__main__":
-    main()
