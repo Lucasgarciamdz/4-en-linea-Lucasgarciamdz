@@ -51,6 +51,12 @@ def print_board(board):
     frameLine = frameLine.replace("#", " " * width)
     frameLine = frameLine.replace("| ", "+-").replace(" |", "-+")
 
+    for i in range(rows):
+        for j in range(cols):
+            if board[i][j] == 1:
+                content[i][j] = "X"
+            elif board[i][j] == 2:
+                content[i][j] = "O"
     # print grid
     print(frameLine)
     for i, row in enumerate((content), 1):
@@ -66,3 +72,7 @@ def print_board(board):
     colNums = " ".join(f"{i:<{width}d}" for i in range(1, cols + 1))
     numLine = numLine.replace("values", colNums)
     print(numLine)
+
+
+if __name__ == '__main__':
+    main()
