@@ -52,24 +52,21 @@ class Test4InLine(unittest.TestCase):
             self.game.insert_chip(column)
 
     def test_change_player(self):
-        game = FourInLine()
-        game.change_player()
-        self.assertEqual(game.player, 2)
+        self.game.change_player()
+        self.assertEqual(self.game.player, 2)
 
     def test_is_full(self):
-        game = FourInLine()
         for i in range(8):
             for j in range(8):
-                game.board[i][j] = 1
-        self.assertTrue(game.is_full())
+                self.game.board[i][j] = 1
+        self.assertTrue(self.game.is_full())
 
     def test_is_full2(self):
-        game = FourInLine()
         for i in range(8):
             for j in range(8):
-                game.board[i][j] = 1
-        game.board[0][0] = 0
-        self.assertFalse(game.is_full())
+                self.game.board[i][j] = 1
+        self.game.board[0][0] = 0
+        self.assertFalse(self.game.is_full())
 
     def test_initial_blank_board(self):
         self.assertEqual(self.game.board,
